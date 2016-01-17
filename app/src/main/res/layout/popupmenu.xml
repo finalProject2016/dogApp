@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/popup_element"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@color/colorPrimary"
+android:orientation="vertical"
+android:padding="10sp" >
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_treatment_treatmentname"
+        android:layout_gravity="center_horizontal"
+        android:hint="what treatment?"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColorHint="@color/regular_white"
+        android:textColor="@color/regular_white"/>
+
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_treatment_doctor"
+        android:hint="doctor"
+        android:layout_below="@+id/new_treatment_treatmentname"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColorHint="@color/regular_white"
+        android:textColor="@color/regular_white"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="10"
+        android:hint="date"
+        android:id="@+id/new_treatment_date"
+        android:layout_below="@+id/new_treatment_comments"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/regular_white"
+        android:textColor="@color/regular_white"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_treatment_comments"
+        android:hint="comments"
+        android:layout_below="@+id/new_treatment_doctor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColorHint="@color/regular_white"
+        android:textColor="@color/regular_white"/>
+    <Button
+        android:id="@+id/new_treatment_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
+        android:text="Done"
+        android:layout_below="@id/new_treatment_date"/>
+</RelativeLayout>
+
+

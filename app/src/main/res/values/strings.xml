@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">DogAPP</string>
+    <string name="server_url">http://46.101.229.180:8000</string>
+    <string name="food6">Pro Plan</string>
+    <string name="food7">Royal Canin</string>
+    <string name="food8">Bonzo</string>
+    <string name="food9">Taste of the world</string>
+    <string name="food10">Go</string>
+
+
+
+
+    <string-array name="food_array">
+        <item>Pro_Plan</item>
+        <item>Royal_Canin</item>
+        <item>Bonzo</item>
+        <item>Taste_of_the_world</item>
+        <item>Go</item>
+    </string-array>
+    <!--<string name="server_url">http://46.101.229.180:8000</string>-->
+
+</resources>

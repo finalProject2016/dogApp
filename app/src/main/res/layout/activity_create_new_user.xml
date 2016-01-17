@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.tombushmits.dogapp.CreateNewUser"
+    android:background="@drawable/dog_background">
+
+
+
+
+
+        <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:id="@+id/Submit"
+                android:clickable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/age"
+            android:layout_alignStart="@+id/age"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/regular_white"
+            android:layout_alignRight="@+id/image_selection"
+            android:layout_alignEnd="@+id/image_selection" />
+
+    <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dogsName"
+                android:hint="My name?"
+                android:layout_above="@+id/Breed"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColorHighlight="@color/abc_primary_text_material_dark"
+                android:textSize="@dimen/abc_text_size_headline_material" />
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Breed"
+                android:hint="Breed"
+                android:textSize="@dimen/abc_text_size_headline_material"
+                android:layout_above="@+id/age"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/age"
+                android:hint="Age"
+                android:textSize="@dimen/abc_text_size_headline_material"
+            android:layout_toLeftOf="@+id/user"
+                android:layout_toStartOf="@+id/user"
+            android:layout_centerVertical="true" />
+
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/user"
+            android:hint="select user name"
+            android:gravity="center_vertical"
+            android:layout_above="@+id/password"
+            android:layout_alignLeft="@+id/password"
+            android:layout_alignStart="@+id/password" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/password"
+            android:editable="true"
+            android:hint="Select password"
+            android:gravity="center_vertical"
+            android:layout_above="@+id/Submit"
+            android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/image_selection"
+        android:layout_alignBottom="@+id/Breed"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/dog_image"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:padding="0dp"
+        />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/age"
+        android:layout_alignLeft="@+id/age"
+        android:layout_alignStart="@+id/age" />
+
+
+</RelativeLayout>

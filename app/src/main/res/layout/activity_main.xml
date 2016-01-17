@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:background="@drawable/dog_background"
+    >
+
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="User Name"
+        android:ems="10"
+        android:id="@+id/user_editTxt"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/password_editTxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/password_editTxt"
+        android:layout_alignEnd="@+id/password_editTxt" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Password"
+        android:id="@+id/password_editTxt"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="forgot password?"
+        android:id="@+id/forgotPassword"
+        android:clickable="true"
+        android:elevation="6dp"
+        android:onClick="forgotPassword"
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/newUser"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:id="@+id/submit_button"
+        android:clickable="true"
+        android:elevation="5dp"
+        android:onClick="submit"
+        android:layout_below="@+id/password_editTxt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp"
+        android:layout_alignRight="@+id/password_editTxt"
+        android:layout_alignEnd="@+id/password_editTxt"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/regular_white"
+        android:background="@color/colorPrimary"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="No account? Create one"
+        android:id="@+id/newUser"
+        android:clickable="true"
+        android:onClick="createNewUser"
+        android:elegantTextHeight="true"
+        android:elevation="6dp"
+        android:singleLine="false"
+        android:layout_below="@+id/submit_button"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <ImageView
+        android:layout_width="200dp "
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/user_editTxt"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/dog"
+        />
+
+
+</RelativeLayout>

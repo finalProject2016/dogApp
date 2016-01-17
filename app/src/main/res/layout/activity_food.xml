@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="Food"
+    android:background="@drawable/dog_background"
+    >
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="50dp"
+        android:id="@+id/scroller"
+        android:paddingBottom="10dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <ImageButton
+                android:id="@+id/food6"
+                android:tag="Pro_Plan"
+                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_gravity="left"
+                android:onClick="Launch_web"
+                android:background="@drawable/food6"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:longClickable="true"
+                />
+
+            <ImageButton
+                android:id="@+id/food7"
+                android:tag="Royal_Canin"
+                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="left"
+                android:onClick="Launch_web"
+                android:background="@drawable/food7"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <ImageButton
+                android:id="@+id/food8"
+                android:tag="Bonzo"
+                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="left"
+                android:onClick="Launch_web"
+                android:background="@drawable/food8"
+
+                />
+
+            <ImageButton
+                android:id="@+id/food9"
+                android:tag="Taste_of_the_world"
+                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="left"
+                android:onClick="Launch_web"
+                android:background="@drawable/food9"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <ImageButton
+                android:id="@+id/food10"
+                android:tag="Go"
+                android:layout_height="200dp"
+                android:layout_width="200dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="left"
+                android:onClick="Launch_web"
+                android:background="@drawable/food10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scroller"
+
+        >
+    </WebView>
+
+
+</RelativeLayout>

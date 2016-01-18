@@ -3,6 +3,7 @@ package com.example.tombushmits.dogapp;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.preference.DialogPreference;
 import android.support.v7.app.AppCompatActivity;
@@ -146,13 +147,13 @@ public class MainActivity extends AppCompatActivity implements HttpInterfaceHand
                 builder = new AlertDialog.Builder(this, R.style.PositiveAlertDialog);
                 builder.setMessage("Your password is:" + password);
                 builder.setTitle("Password reminder");
-                builder.setIcon(R.drawable.dog);
+                builder.setIcon(R.drawable.logo2_small);
 
             }
             else {
                 builder = new AlertDialog.Builder(this, ErrorDialog);
                 builder.setMessage("User entered does not exist" + password);
-                builder.setIcon(R.drawable.dog);
+                builder.setIcon(R.drawable.logo2_small);
                 builder.setTitle("Something went wrong!");
 
 

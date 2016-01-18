@@ -100,13 +100,17 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
         String image;
         if (imageView.getDrawable() != null){
             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-            image = getStringFromBitmap(drawable.getBitmap());
+            Bitmap img = drawable.getBitmap();
+
+            image = getStringFromBitmap(Bitmap.createScaledBitmap(img,300,300,false));
         }
        else
         {
            imageView.setImageResource(R.drawable.dog_image);
             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
-            image = getStringFromBitmap(drawable.getBitmap());
+            Bitmap normal = drawable.getBitmap();
+            Bitmap scaled = Bitmap.createScaledBitmap(normal, 300, 300, false);
+            image = getStringFromBitmap(scaled);
 
         }
         newDog.put("dog_picture", image);

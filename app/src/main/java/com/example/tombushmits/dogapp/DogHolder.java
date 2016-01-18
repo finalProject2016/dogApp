@@ -21,7 +21,7 @@ public class DogHolder {
     String user;
     String password;
     String _id;
-    Location location;
+    Location location=null;
 
 
             //getters
@@ -50,6 +50,7 @@ public class DogHolder {
         byte[] imageAsBytes = Base64.decode(picture.getBytes(), Base64.DEFAULT);
         this.picture = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
     }
+    public void setLocation(Location location){this.location = location;}
             //define the singleton
     private static DogHolder dogHolder = new DogHolder();
     public static DogHolder getInstance(){return dogHolder;}

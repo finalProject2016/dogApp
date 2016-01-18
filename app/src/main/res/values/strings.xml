@@ -17,6 +17,7 @@
         <item>Taste_of_the_world</item>
         <item>Go</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
     <!--<string name="server_url">http://46.101.229.180:8000</string>-->
 
 </resources>

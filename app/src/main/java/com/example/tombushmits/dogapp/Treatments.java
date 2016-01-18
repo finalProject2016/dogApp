@@ -96,7 +96,7 @@ public class Treatments extends AppCompatActivity implements HttpInterfaceHandle
 
                         try {
                             json.put("comment", treatmentList.get(size - 1).getDetails());
-                            json.put("treatment",treatmentList.get(size-1).getName());
+                            json.put("treatment_name",treatmentList.get(size-1).getName());
                             json.put("doctor", treatmentList.get(size - 1).getDoctorName());
                             json.put("date",treatmentList.get(size-1).getDate());
                         } catch (JSONException e) {

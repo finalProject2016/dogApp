@@ -160,7 +160,7 @@ public class httpAsyncTask extends AsyncTask<String, Integer, String> {
 
 
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setIcon(R.drawable.dog);
+            dialog.setIcon(R.drawable.logo2_small);
             dialog.setCancelable(false);
             dialog.show();
         //}

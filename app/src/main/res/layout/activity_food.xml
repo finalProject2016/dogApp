@@ -6,7 +6,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context="Food"
-    android:background="@drawable/dog_background"
+    android:background="@drawable/bones"
     >
 
     <HorizontalScrollView

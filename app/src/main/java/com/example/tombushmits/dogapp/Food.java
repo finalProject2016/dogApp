@@ -79,7 +79,7 @@ public class Food extends AppCompatActivity implements HttpInterfaceHandler
               {
                   default_food = (String)v.getTag();
 
-                  AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                  AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context,R.style.PositiveAlertDialog);
                   // set title
                  // alertDialogBuilder.setTitle("Your Title");
 
@@ -108,7 +108,7 @@ public class Food extends AppCompatActivity implements HttpInterfaceHandler
 
                                   // if this button is clicked, close
                                   // current activity
-                                  AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(context);
+                                  AlertDialog.Builder alertDialogBuilder2 = new AlertDialog.Builder(context,R.style.PositiveAlertDialog);
                                   // set dialog message
                                   alertDialogBuilder2
                                           .setIcon(R.drawable.greenfoot)

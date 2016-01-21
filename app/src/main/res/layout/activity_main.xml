@@ -19,7 +19,7 @@
         android:ems="10"
         android:id="@+id/user_editTxt"
         android:alpha="50"
-        android:drawableLeft="@drawable/pass_icon"
+        android:drawableLeft="@drawable/user_icon"
         android:editable="false"
         android:elevation="10dp"
         android:background="@color/colorPrimary"
@@ -35,7 +35,7 @@
         android:ems="10"
         android:hint="Password"
         android:textColorHint="@color/regular_white"
-        android:drawableLeft="@drawable/user_icon"
+        android:drawableLeft="@drawable/pass_icon"
         android:id="@+id/password_editTxt"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -98,7 +98,7 @@
         android:id="@+id/imageView"
         android:layout_above="@+id/user_editTxt"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/logo2"
+        android:src="@drawable/logo"
         />
 
 

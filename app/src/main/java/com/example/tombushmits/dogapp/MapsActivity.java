@@ -1,5 +1,6 @@
 package com.example.tombushmits.dogapp;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -7,8 +8,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.AsyncTask;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,19 +27,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,HttpInterfaceHandler
+
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 {
 
     private GoogleMap mMap;
     GPSTracker gps;
+    Boolean partnersReady =false;
     Double latitude;
     Double longitude;
     ArrayList<PartnerInfo> walkers = new ArrayList<PartnerInfo>();
     LatLng curr2;
     LatLng curr3;
     BitmapDescriptor pic;
+    View frag_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -43,10 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        httpAsyncTask task = (httpAsyncTask) new httpAsyncTask(MapsActivity.this);
-        task.setContext(this);
-        task.execute(getString(R.string.server_url) + "/getCoordinates/" + DogHolder.getInstance()._id, "GET");
-
+        getLocationAsyncTask task = (getLocationAsyncTask)new getLocationAsyncTask(this);
+        task.execute(getString(R.string.server_url) + "/getCoordinates/" + DogHolder.getInstance()._id);
 
 
 
@@ -92,15 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     {
         mMap = googleMap;
 
-        for(int i=0; i<walkers.size(); i++)
-        {
-            if(i==walkers.size()-1)
-                mMap.addMarker(new MarkerOptions().position(walkers.get(i).getCoordination()).title(walkers.get(i).getName()));
-            else {
-                mMap.addMarker(new MarkerOptions().position(walkers.get(i).getCoordination()).title(walkers.get(i).getName()).icon(walkers.get(i).getPic()));
 
-            }
-        }
 
         /*// Add a marker in Sydney and move the camera
         LatLng current = new LatLng(latitude, longitude);
@@ -112,32 +115,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
         CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
         mMap.animateCamera(zoom);
-    }
 
-    @Override
-    public void postHandle(String result) throws JSONException {
-
-    }
-    @Override
-    public void getHandle(String result) throws JSONException
-    {
-        //get all treatment here
-        JSONObject json = new JSONObject(result);
-        PartnerInfo toAdd = null;
-        JSONArray array = json.getJSONArray("Dogs"); //gettting top key from the json array
-        int size = array.length(); //iterate over each value (=each treatment) and parse data
-        for(int i=0; i< array.length(); i++)
+        for(int i=0; i<walkers.size(); i++)
         {
-            JSONObject obj = array.getJSONObject(i);
-            String name = obj.get("dog_name").toString();
-            String pic = obj.get("dog_picture").toString();
-            String lat = obj.get("latitude").toString();
-            String longi = obj.get("longitude").toString();
-            toAdd = new PartnerInfo(name, pic, lat, longi);
-            toAdd.setLatLong();
-            walkers.add(toAdd);
+            if(i==walkers.size()-1)
+                mMap.addMarker(new MarkerOptions().position(walkers.get(i).getCoordination()).title(walkers.get(i).getName()));
+            else {
+                mMap.addMarker(new MarkerOptions().position(walkers.get(i).getCoordination()).title(walkers.get(i).getName()).icon(walkers.get(i).getPic()));
+
+            }
         }
-        startMapFragment();
+
     }
 
     public void startMapFragment()
@@ -153,8 +141,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         walkers.add(toAdd);
 
         //starting map activity:
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
@@ -178,6 +165,70 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         return output;
     }
+
+
+    public class getLocationAsyncTask extends AsyncTask<String,Void,String>{
+        HttpURLConnection connection;
+
+        Context context;
+
+        public getLocationAsyncTask(Context context){this.context = context;}
+        @Override
+        protected String doInBackground(String... params) {
+            URL url = null;
+
+            try {
+                url = new URL(params[0]);
+
+                connection = (HttpURLConnection) url.openConnection();
+                BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                        br.close();
+                        return sb.toString();
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "No response";
+        }
+
+        @Override
+        protected void onPostExecute(String result){
+            JSONObject json = null;
+            try {
+                json = new JSONObject(result);
+                PartnerInfo toAdd = null;
+                JSONArray array = json.getJSONArray("Dogs"); //gettting top key from the json array
+                int size = array.length(); //iterate over each value (=each treatment) and parse data
+                for(int i=0; i< array.length(); i++)
+                {
+                    JSONObject obj = array.getJSONObject(i);
+                    String name = obj.get("dog_name").toString();
+                    String pic = obj.get("dog_picture").toString();
+                    String lat = obj.get("latitude").toString();
+                    String longi = obj.get("longitude").toString();
+                    toAdd = new PartnerInfo(name, pic, lat, longi);
+                    toAdd.setLatLong();
+                    walkers.add(toAdd);
+                }
+                startMapFragment();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            }
+
+
+
+    }
+
 
 }
 

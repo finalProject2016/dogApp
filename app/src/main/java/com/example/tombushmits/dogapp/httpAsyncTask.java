@@ -1,5 +1,6 @@
 package com.example.tombushmits.dogapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -28,6 +29,8 @@ public class httpAsyncTask extends AsyncTask<String, Integer, String> {
     HttpURLConnection http;
     ProgressDialog dialog;
     private Context context;
+    AlertDialog.Builder builder;
+
 
 
     public httpAsyncTask(HttpInterfaceHandler interFace) {
@@ -98,8 +101,6 @@ public class httpAsyncTask extends AsyncTask<String, Integer, String> {
                 StringBuilder sb = new StringBuilder();
                 String line;
                 while ((line = br.readLine()) != null) {
-
-
                     sb.append(line + "\n");
 
                 }
@@ -159,7 +160,7 @@ public class httpAsyncTask extends AsyncTask<String, Integer, String> {
             dialog.setTitle("DOGM8");
 
 
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.setIcon(R.drawable.logo2_small);
             dialog.setCancelable(false);
             dialog.show();

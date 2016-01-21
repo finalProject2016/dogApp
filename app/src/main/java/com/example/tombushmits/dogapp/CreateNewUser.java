@@ -10,6 +10,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHandler {
+public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHandler  {
     private int PICK_IMAGE_REQUEST = 1;
     String imgDecodableString;
     private static String url_register = "http://46.101.229.180:8000/register";
@@ -43,13 +44,13 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
         setContentView(R.layout.activity_create_new_user);
 
         ImageButton importImage = (ImageButton) findViewById(R.id.image_selection);
-        Button submit_button = (Button)findViewById(R.id.Submit);
+        FloatingActionButton submit_button = (FloatingActionButton)findViewById(R.id.Submit);
 
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.food_array, android.R.layout.simple_spinner_item);
+                R.array.food_array, R.layout.spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -106,7 +107,7 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
         }
        else
         {
-           imageView.setImageResource(R.drawable.dog_image);
+           imageView.setImageResource(R.drawable.no_picture);
             BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
             Bitmap normal = drawable.getBitmap();
             Bitmap scaled = Bitmap.createScaledBitmap(normal, 300, 300, false);
@@ -155,10 +156,7 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
 
 
     private String getStringFromBitmap(Bitmap bitmapPicture) {
- /*
- * This functions converts Bitmap picture to a string which can be
- * JSONified.
- * */
+
         final int COMPRESSION_QUALITY = 100;
         String encodedImage;
         ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
@@ -171,9 +169,7 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
 
 
     private Bitmap getBitmapFromString(String jsonString) {
-/*
-* This Function converts the String back to Bitmap
-* */
+
         byte[] decodedString = Base64.decode(jsonString, Base64.DEFAULT);
         Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
         return decodedByte;
@@ -233,4 +229,5 @@ public class CreateNewUser extends AppCompatActivity implements HttpInterfaceHan
     public void getHandle(String result) {
 
     }
+
 }

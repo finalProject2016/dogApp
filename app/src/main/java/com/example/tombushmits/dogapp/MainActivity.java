@@ -1,6 +1,7 @@
 package com.example.tombushmits.dogapp;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -12,6 +13,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -67,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements HttpInterfaceHand
     public void submit(View view) {
 //        String user = user_box.getText().toString();
 //        String password = pss_box.getText().toString();
+
+
+        hideKeyboard();
+
         if(text_changed && pass_changed) {
             userDetailRetrieval =true;
             String get_user_url = getString(R.string.server_url) + "/get_dog/" + user_box.getText().toString()+'/' + pss_box.getText().toString();
@@ -102,8 +108,22 @@ public class MainActivity extends AppCompatActivity implements HttpInterfaceHand
 
     }
     public void getHandle(String result) throws JSONException {
-        JSONObject json = new JSONObject(result);
         if (userDetailRetrieval) {
+            if(result.equalsIgnoreCase("No response"))
+            {
+                AlertDialog dialog;
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(this, R.style.ErrorDialog);
+                builder.setTitle("Login ERROR");
+                builder.setMessage("Server not available..");
+                builder.setIcon(R.drawable.logo2_small);
+                dialog = builder.create();
+                dialog.show();
+                dialog.getWindow().setLayout(1200, 400);
+                return;
+
+            }
+            JSONObject json = new JSONObject(result);
             DogHolder dogHolder = DogHolder.getInstance();
             if (json.get("status").toString().equalsIgnoreCase("user not found")) {
                 EditText txt = (EditText) findViewById(R.id.user_editTxt);
@@ -138,6 +158,8 @@ public class MainActivity extends AppCompatActivity implements HttpInterfaceHand
         }
         if(passwordRetrieval)
         {
+            JSONObject json = new JSONObject(result);
+
             String status = json.get("status").toString();
             String password="";
             AlertDialog.Builder builder;
@@ -220,6 +242,12 @@ public class MainActivity extends AppCompatActivity implements HttpInterfaceHand
 
 
 
+    public void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
 }
